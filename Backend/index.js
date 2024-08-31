@@ -5,21 +5,20 @@ const PORT = process.env.PORT;
 import ProductRoutes from "./Routes/ProductRoutes.js";
 import cors from "cors";
 
-const app = express();
-
 // middleware
+dotenv.config({
+  path: "./env",
+});
 
+const app = express();
 app.use(
   cors({
     origin: "http://localhost:5173",
   })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-dotenv.config({
-  path: "./env",
-});
 
 // routes middleware
 app.use("/api/products", ProductRoutes);
